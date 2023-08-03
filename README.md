@@ -53,9 +53,9 @@
 
 <dl>
   <dt>Ruby (version: 2.7.1)</dt>
-  <dd>Rails (version: 6.0.6.1)</dd>
+  <dt>Rails (version: 6.0.6.1)</dt>
   <dt>Node.js (version: 16.14.0)</dt>
-  <dd>Yarn (version: 1.22.19)</dd>
+  <dt>Yarn (version: 1.22.19)</dt>
 </dl>
 
 #### 2. プロジェクトの解凍
