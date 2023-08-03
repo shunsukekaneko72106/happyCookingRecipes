@@ -21,4 +21,22 @@
       </div>
     <% end %>
   </div>
+  <nav aria-label="Page navigation example" class="d-flex justify-content-end">
+    <ul class="pagination">
+      <% if @prev_offset %>
+        <li class="page-item">
+          <%= link_to cooking_records_path(offset: @prev_offset), class: 'page-link', aria: { label: 'Previous' } do %>
+            <span aria-hidden="true">&laquo;</span>
+          <% end %>
+        </li>
+      <% end %>
+      <% if @next_offset %>
+        <li class="page-item">
+          <%= link_to cooking_records_path(offset: @next_offset), class: 'page-link', aria: { label: 'Next' } do %>
+            <span aria-hidden="true">&raquo;</span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
 </div>
