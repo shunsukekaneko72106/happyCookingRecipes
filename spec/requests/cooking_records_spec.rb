@@ -1,24 +1,44 @@
 require 'rails_helper'
 
-RSpec.describe "CookingRecords", type: :system do
-  before do
-    stub_request(:get, "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_96.0.4664").
-    with(
-      headers: {
-        'Accept'=>'*/*',
-        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Host'=>'chromedriver.storage.googleapis.com',
-        'User-Agent'=>'Ruby'
-      }).
-    to_return(status: 200, body: "", headers: {})  
-  end
+RSpec.describe "CookingRecords", type: :request do
+  #APIからのデータが取得が正しいかどうか
+  describe '#index' do
+    let(:expected_cooking_records) do
+      [
+        {
+          "image_url"=>"https://cooking-records.ex.oishi-kenko.com/images/19.jpg",
+          "comment"=>"指先までつけた塩でよい塩梅に。",
+          "recipe_type"=>"main_dish",
+          "recorded_at"=>"2018-04-12 18:32:19"
+        },
+      ]
+    end
 
-  it 'displays the cooking records' do
-    visit cooking_records_path
-    expect(page).to have_content 'record 1 comment'
-    expect(page).to have_content 'record 2 comment'
-    expect(page).to have_css("img[src*='https://cooking-records.ex.oishi-kenko.com/images/1.jpg']")
-    expect(page).to have_css("img[src*='https://cooking-records.ex.oishi-kenko.com/images/2.jpg']")
+    let(:api_url) { "https://cooking-records.ex.oishi-kenko.com/cooking_records?offset=18&limit=6" }
+  
+    before do
+      stub_request(:get, api_url).
+        to_return(body: { cooking_records: expected_cooking_records }.to_json)
+    end
+
+    #取得したAPIが正しく表示されているかどうか
+    it "fetches the cooking records from the API and display them" do
+      get '/cooking_records', params: { offset: 18 }
+    
+      expected_cooking_records.each do |record|
+        #特殊文字をエスケープ
+        expect(response.body).to include(CGI.escapeHTML(record["image_url"]))
+        expect(response.body).to include(CGI.escapeHTML(record["comment"]))
+        expect(response.body).to include(
+          case record['recipe_type']
+          when 'main_dish' then '主菜/主食'
+          when 'side_dish' then '副菜'
+          when 'soup' then 'スープ'
+          else CGI.escapeHTML(record['recipe_type'])
+          end
+        )
+        expect(response.body).to include(DateTime.parse(record['recorded_at']).strftime('%Y-%m-%d'))
+      end
+    end
   end
 end
-
