@@ -1,10 +1,24 @@
-<h1>Cooking Records Album</h1>
-
-<% @cooking_records.each do |record| %>
-  <div>
-    <img src="<%= record['image_url'] %>" alt="Record image">
-    <p><%= record['comment'] %></p>
-    <p><%= record['recipe_type'] %></p>
-    <p><%= record['recorded_at'] %></p>
+<div class="container">
+  <h1 class="text-center my-4">料理健康アルバム</h1>
+  <div class="row">
+    <% @cooking_records.each do |record| %>
+      <div class="col-md-4 py-2">
+        <div class="card mx-auto" style="width: 18rem;">
+          <img src="<%= record['image_url'] %>" class="card-img-top" alt="Record image">
+          <div class="card-body">
+            <p class="card-text">
+              <%= case record['recipe_type']
+                  when 'main_dish' then '主菜/主食'
+                  when 'side_dish' then '副菜'
+                  when 'soup' then 'スープ'
+                  else record['recipe_type']
+                  end %>
+            </p>
+            <p class="card-text"><%= record['comment'] %></p>
+            <p class="card-text"><%= DateTime.parse(record['recorded_at']).strftime('%Y-%m-%d') %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
