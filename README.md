@@ -51,10 +51,12 @@
 #### 1. 必要なソフトウェアのインストール
 以下のソフトウェアがシステムにインストールされていることを確認してください:
 
-Ruby (version: 2.7.1)
-Rails (version: 6.0.6.1)
-Node.js (version: 16.14.0)
-Yarn (version: 1.22.19)
+<dl>
+  <dt>Ruby (version: 2.7.1)</dt>
+  <dd>Rails (version: 6.0.6.1)</dd>
+  <dt>Node.js (version: 16.14.0)</dt>
+  <dd>Yarn (version: 1.22.19)</dd>
+</dl>
 
 #### 2. プロジェクトの解凍
 ダウンロードしたZIPファイルを適当な場所に解凍してください。
