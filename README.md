@@ -64,17 +64,19 @@
 #### 3. 依存関係のインストール
 解凍したプロジェクトディレクトリに移動し、以下のコマンドを実行して依存関係をインストールします。
 
-bash
-Copy code
-cd <project_folder_name>
-bundle install
-yarn install
+<dl>
+  <dt>cd <project_folder_name></dt>
+  <dt>bundle install</dt>
+  <dt>yarn install</dt>
+</dl>
+
 
 #### 4. サーバの起動
 以下のコマンドを実行してサーバを起動します。
 
-Copy code
 rails server
-以上でセットアップが完了です。ブラウザでhttp://localhost:3000にアクセスすると、アプリケーションを見ることができます。
+以上でセットアップが完了です。ブラウザで
+http://localhost:3000
+にアクセスすると、アプリケーションを見ることができます。
 
 こちらは基本的なセットアップ手順です。プロジェクトによっては、追加で環境変数の設定や他の設定が必要な場合があります。それらの詳細は、プロジェクトのドキュメンテーションを参照してください。
