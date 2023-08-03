@@ -65,7 +65,7 @@
 解凍したプロジェクトディレクトリに移動し、以下のコマンドを実行して依存関係をインストールします。
 
 <dl>
-  <dt>cd <project_folder_name></dt>
+  <dt>cd project_folder_name</dt>
   <dt>bundle install</dt>
   <dt>yarn install</dt>
 </dl>
