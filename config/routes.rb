@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get 'cooking_records/index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'cooking_records#index'
+  get 'cooking_records', to: 'cooking_records#index'
 end

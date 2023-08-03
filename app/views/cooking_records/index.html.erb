@@ -1,2 +1,10 @@
-<h1>CookingRecords#index</h1>
-<p>Find me in app/views/cooking_records/index.html.erb</p>
+<h1>Cooking Records Album</h1>
+
+<% @cooking_records.each do |record| %>
+  <div>
+    <img src="<%= record['image_url'] %>" alt="Record image">
+    <p><%= record['comment'] %></p>
+    <p><%= record['recipe_type'] %></p>
+    <p><%= record['recorded_at'] %></p>
+  </div>
+<% end %>
